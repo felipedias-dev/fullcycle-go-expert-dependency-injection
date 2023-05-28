@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/felipedias-dev/fullcycle-go-expert-dependency-injection/product"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -14,9 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	repository := product.NewProductRepository(db)
-
-	usecase := product.NewProductUseCase(*repository)
+	usecase := NewProductUseCase(db)
 
 	product, err := usecase.GetProduct(1)
 	if err != nil {
